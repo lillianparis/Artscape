@@ -1,0 +1,12 @@
+import React from 'react'
+
+function index() {
+    return (
+        <div>
+            <p>hello</p>
+
+        </div>
+    )
+}
+
+export default index

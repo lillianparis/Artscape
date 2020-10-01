@@ -4,7 +4,7 @@ const Navbar = ({ handleLogout }) => {
   return (
     <section className="home">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
           Artscape
         </a>
         <button
@@ -22,17 +22,17 @@ const Navbar = ({ handleLogout }) => {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="/studio">
                 My Studio<span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="/feed">
                 Art Feed
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="/Inbox">
                 Inbox
               </a>
             </li>

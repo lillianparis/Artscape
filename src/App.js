@@ -2,7 +2,16 @@ import React, { useState, useEffect} from 'react';
 import fire from './fire';
 import Login from './components/Login/login';
 import Navbar from './components/Navbar/Navbar';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
+
+
+
+//Pages
+import Home from "./Pages/Home";
+import Feed from "./Pages/Feed";
+import Inbox from "./Pages/Inbox";
+import Studio from "./Pages/Studio";
 
 const App = () => {
   const [user, setUser] = useState('');
@@ -76,7 +85,7 @@ const App = () => {
 
   useEffect(() =>{
     authListener();
-  }, [])
+  }, )
 
   return (
     <div className= "App">
@@ -84,20 +93,29 @@ const App = () => {
         <Navbar handleLogout={handleLogout} />
         ) : (
           <Login 
-            email={email}
-            setEmail={setEmail}
-            password={password}
-            setPassword={setPassword}
-            handleLogin={handleLogin}
-            handleSignup={handleSignup}
-            hasAccount={hasAccount}
-            setHasAccount={setHasAccount}
-            emailError={emailError}
-            passwordError={passwordError}
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+          handleLogin={handleLogin}
+          handleSignup={handleSignup}
+          hasAccount={hasAccount}
+          setHasAccount={setHasAccount}
+          emailError={emailError}
+          passwordError={passwordError}
           />
           )}
     </div>
   );
+   function App() {
+    return (
+  <Router>
+    <Route exact path="/" component={Home} />
+    <Route exact path="/Feed" component={Feed} />
+    <Route exact path="/Inbox" component={Inbox} />
+    <Route exact path="/Studio" component={Studio} />
+    </Router>
+    )
 };
-
+}
 export default App;

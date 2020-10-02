@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Router } from "@reach/router";
 
 import SignIn from "../SignIn/index";
-import SignUp from "../Signup/index";
+import Signup from "../Signup/index";
 import PasswordReset from "../PasswordReset/index";
 import ProfilePage from "../ProfilePage/index";
 import { UserContext } from "../../Providers/UserProvider";
@@ -20,7 +20,7 @@ function Application() {
     <ProfilePage />
     : 
     <Router>
-      <SignUp path="signUp" />
+      <Signup path="signup" />
       <SignIn path="/" />
       <PasswordReset path = "passwordReset" />
       

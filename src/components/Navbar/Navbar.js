@@ -1,10 +1,15 @@
 import React from "react";
+import { auth } from "../../fire";
+import UserInfo from "../UserInfo/index";
+import "./style.css";
 
 const Navbar = ({ handleLogout }) => {
+  
+
   return (
     <section className="home">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" href="/home">
           Artscape
         </a>
         <button
@@ -36,6 +41,11 @@ const Navbar = ({ handleLogout }) => {
                 Inbox
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/cart">
+                Cart
+              </a>
+            </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
             <input
@@ -45,15 +55,22 @@ const Navbar = ({ handleLogout }) => {
               aria-label="Search"
             ></input>
             <button
-              class="btn btn-sm btn-outline-success my-2 my-sm-0"
+              className="search"
               type="submit"
             >
               Search
             </button>
           </form>
+          <UserInfo />
         </div>
 
-        <button onClick={handleLogout}>Logout</button>
+        <button className="exit"
+          onClick={() => {
+            auth.signOut();
+          }}
+        >
+          Sign out
+        </button>
       </nav>
     </section>
   );

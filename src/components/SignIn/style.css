@@ -31,7 +31,7 @@ button {
     width: 100%;
     max-width: 520px;
     min-height: 600px;
-    display: flex;
+    display: center;
     flex-direction: column;
     justify-content: center;
     background: radial-gradient(
@@ -103,4 +103,8 @@ button {
   .googlebutton{
       color: white;
       background-color: red;
+  }
+
+  .loginContainer{
+    margin-top: 100px;
   }

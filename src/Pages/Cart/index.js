@@ -1,12 +1,11 @@
 import React from 'react'
 
-function inbox() {
+function cart() {
     return (
         <div>
-            
-InBOX
+           Shopping Cart
         </div>
     )
 }
 
-export default inbox
+export default cart

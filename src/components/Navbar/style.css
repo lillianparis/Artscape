@@ -1,0 +1,41 @@
+
+  
+   .home nav {
+    background: #0224fe;
+    width: 100%;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .home nav h2 {
+    color: #fff;
+  }
+  
+  .home nav button {
+    width: 86px;
+    padding: 8px 0;
+    background: #2e0089;
+  }
+  
+  .logo{
+    text-align: center;
+    color: white;
+    font-size: xx-large;
+  }
+  
+  .logoQuote{
+    text-align: center;
+    color: white;
+  }
+
+  button.search{
+    margin-right: 25px;
+  }
+
+  .exit{
+    margin-left: 20px;
+  }
+  
+  

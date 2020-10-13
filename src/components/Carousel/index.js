@@ -2,16 +2,14 @@ import React from "react";
 import "./style.css";
 
 function carousel() {
-  
-  
-    return (
-<div
+  return (
+    <div
       id="carouselExampleInterval"
       class="carousel slide"
       data-ride="carousel"
     >
       <div class="carousel-inner">
-        <div class="carousel-item active"     data-interval="2000">
+        <div class="carousel-item active" data-interval="5000">
           <div class="jumbotron text-center">
             <h1 class="display-4">Hello, And Welcome!</h1>
             <p class="lead">
@@ -27,9 +25,9 @@ function carousel() {
             </p>
           </div>
         </div>
-          <div className="carousel-item" data-interval="100000">
-            <div className="jumbotron2 ">
-                <div className="col-6 float-right">
+        <div className="carousel-item" data-interval="5000">
+          <div className="jumbotron2 ">
+            <div className="col-6 float-right">
               <h1 className="atrist">Are you a Artist?</h1>
               <p className="ad2">
                 Create you're Studio page and place your artwork for sale! why
@@ -41,26 +39,29 @@ function carousel() {
                 we know how much time and dedication you put in to your
                 masterpieces!{" "}
               </p>
-              </div>
             </div>
           </div>
-          <div class="carousel-item">
-            <div class="jumbotron3 text-center">
-            <div className="col-6 float-right">
-              <h1 class="display-4">Are you a Art Lover ?</h1>
-              <p class="lead">
-                Search for your favorite artist or genre of art that you
-                like!connect with the artist and even purchase your favorite
-                masterpiece.
-              </p>
-              <hr class="my-4" />
-              <p className="lead2">
-               check out Artist Today, hang your painting tomorrow on your wall.
-              </p>
+        </div>
+        <div class="carousel-item">
+          
+            <div class="jumbotron3">
+              <div className="col-6 float-right">
+                <h1 class="display-4">Are you a Art Lover ?</h1>
+                <p class="lead">
+                  Search for your favorite artist or genre of art that you
+                  like!connect with the artist and even purchase your favorite
+                  masterpiece.
+                </p>
+                <hr class="my-4" />
+                <p className="lead2">
+                  check out Artist Today, hang your painting tomorrow on your
+                  wall.
+                </p>
               </div>
             </div>
-          </div>
-        
+          
+        </div>
+
         <a
           class="carousel-control-prev"
           href="#carouselExampleInterval"
@@ -81,6 +82,6 @@ function carousel() {
         </a>
       </div>
     </div>
-    )
-    }
-    export default carousel;
+  );
+}
+export default carousel;

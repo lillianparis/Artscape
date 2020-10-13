@@ -5,21 +5,18 @@
 }
 
 .jumbotron2{
-    background-image: url(https://images.unsplash.com/photo-1517697471339-4aa32003c11a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1355&q=80);
+    background-color: grey;
     background-position: center;
-    background-size: cover;
-     padding-top: 100px;
-    padding-bottom: 245px;
-
+    padding-top: 75px;
+    padding-bottom: 80px;
 
 }
 
 .jumbotron3{
-    background-image: url(https://images.unsplash.com/photo-1600433709093-78b818fd083d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1534&q=80);
+    background-color: grey;
     background-position: center;
-    background-size: cover;
-    padding-top: 100px;
-    padding-bottom: 245px;
+    padding-top: 75px;
+    padding-bottom: 80px;
     
 
 }

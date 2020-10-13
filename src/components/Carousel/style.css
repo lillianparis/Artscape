@@ -8,21 +8,31 @@
     background-image: url(https://images.unsplash.com/photo-1517697471339-4aa32003c11a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1355&q=80);
     background-position: center;
     background-size: cover;
-    padding-top: 64px;
-    padding-bottom: 64px;
+     padding-top: 100px;
+    padding-bottom: 245px;
 
 
 }
 
 .jumbotron3{
-    background-image: url(https://images.unsplash.com/photo-1522878308970-972ec5eedc0d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80);
+    background-image: url(https://images.unsplash.com/photo-1598820769158-6cd132c25786?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80);
     background-position: center;
     background-size: cover;
-    padding-top: 64px;
-    padding-bottom: 64px;
+    padding-top: 100px;
+    padding-bottom: 245px;
+    
 
 }
 
 .ad2{
     justify-content: right;
+    color: #2e0089;
+}
+
+.lead{
+    color: #2e0089;
+}
+
+.lead2{
+    color: #2e0089;
 }

@@ -19,7 +19,7 @@ function carousel() {
               together and connect.
             </p>
             <hr class="my-4" />
-            <p>
+            <p className="lead2">
               Find your Favorite Artist connect, and buy your favorite artwork
               and or sculptures from anywhere around the world! Stop waiting for
               your favorite artist to come to your area for an artshow. contact
@@ -27,33 +27,37 @@ function carousel() {
             </p>
           </div>
         </div>
-          <div class="carousel-item" data-interval="100000">
-            <div class="jumbotron2 text-right">
-              <h1 class="atrist">Are you a Artist?</h1>
-              <p class="ad2">
-                Create you'r Studio page and place your artwork for sale! why
-                have galleries carge up to 60% commision on your paintings!
+          <div className="carousel-item" data-interval="100000">
+            <div className="jumbotron2 ">
+                <div className="col-6 float-right">
+              <h1 className="atrist">Are you a Artist?</h1>
+              <p className="ad2">
+                Create you're Studio page and place your artwork for sale! why
+                have galleries charge up to 60% commision on your paintings!
               </p>
-              <hr class="my-4" />
-              <p>
+              <hr className="my-4" />
+              <p className="lead2">
                 Get full price what you ask for your art piece! here at Artscape
                 we know how much time and dedication you put in to your
                 masterpieces!{" "}
               </p>
+              </div>
             </div>
           </div>
           <div class="carousel-item">
             <div class="jumbotron3 text-center">
-              <h1 class="display-4">Are you a Art Collector ?</h1>
+            <div className="col-6 float-right">
+              <h1 class="display-4">Are you a Art Lover ?</h1>
               <p class="lead">
                 Search for your favorite artist or genre of art that you
                 like!connect with the artist and even purchase your favorite
                 masterpiece.
               </p>
               <hr class="my-4" />
-              <p>
+              <p className="lead2">
                check out Artist Today, hang your painting tomorrow on your wall.
               </p>
+              </div>
             </div>
           </div>
         

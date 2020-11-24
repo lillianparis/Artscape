@@ -16,8 +16,14 @@ function cardlayout () {
     <div class="col">
     <Card />
     </div>
+    <div class="col">
+    <Card />
+    </div>
   </div>
   <div class="row">
+    <div class="col">
+    <Card />
+    </div>
     <div class="col">
     <Card />
     </div>

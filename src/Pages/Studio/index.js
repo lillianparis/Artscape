@@ -1,13 +1,13 @@
 import React from "react";
 import StudioHeader from "../../components/StudioHeader";
-import Card from "../../components/Cards";
+import Cardlayout from "../../components/CardLayout";
 import "./style.css";
 
 function studio() {
   return (
     <>
     <StudioHeader />
-    <Card />
+    <Cardlayout />
     </>
   );
 }

@@ -4,75 +4,99 @@ import UserInfo from "../UserInfo/index";
 import "./style.css";
 
 const Navbar = ({ handleLogout }) => {
-  
-
   return (
-    <section className="home">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/home">
+    <>
+      <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="/">
           Artscape
         </a>
         <button
-          class="navbar-toggler"
+          class="navbar-toggler position-absolute d-md-none collapsed"
           type="button"
           data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
+          data-target="#sidebarMenu"
+          aria-controls="sidebarMenu"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/studio">
-                My Studio<span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/feed">
-                Art Feed
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/Inbox">
-                Inbox
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/cart">
-                Cart
-              </a>
-            </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input
-              class="form-control mr-sm-2"
-              type="search"
-              placeholder="Search for Artist"
-              aria-label="Search"
-            ></input>
-            <button
-              className="search"
-              type="submit"
+        <input
+          class="form-control form-control-dark w-100"
+          type="text"
+          placeholder="Search for an Artist"
+          aria-label="Search"
+        ></input>
+        <ul class="navbar-nav px-3">
+          <li class="nav-item text-nowrap">
+            <a
+              class="nav-link"
+              href="#"
+              onClick={() => {
+                auth.signOut();
+              }}
             >
-              Search
-            </button>
-          </form>
-          <UserInfo />
-        </div>
-
-        <button className="exit"
-          onClick={() => {
-            auth.signOut();
-          }}
-        >
-          Sign out
-        </button>
+              Sign out
+            </a>
+          </li>
+        </ul>
       </nav>
-    </section>
+
+      <div class="container-fluid">
+        <div class="row">
+          <nav
+            id="sidebarMenu"
+            class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
+          >
+            <div class="sidebar-sticky pt-3">
+              <ul class="nav flex-column">
+                
+                <li class="nav-item">
+                  <a class="nav-link" href="/feed">
+                    <span data-feather="feed"></span>
+                    Feed
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/studio">
+                    <span data-feather="studio"></span>
+                    Studio
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/inbox">
+                    <span data-feather="users"></span>
+                    Messages
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span data-feather="bar-chart-2"></span>
+                    Saved Artists
+                  </a>
+                </li>
+              </ul>
+
+              <ul class="nav flex-column mb-2">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    Shopping Cart
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    Orders
+                  </a>
+                </li>
+              </ul>
+              <UserInfo />
+            </div>
+          </nav>
+        </div>
+      </div>
+    </>
   );
 };
 

@@ -5,6 +5,8 @@ import "./style.css";
 function cardlayout () {
     return (
 <>
+<div class="album py-5 bg-light">
+    
 <div class="container-fluid">
   <div class="row">
     <div class="col">
@@ -34,6 +36,7 @@ function cardlayout () {
     <Card />
     </div>
   </div>
+</div>
 </div>
 </>
     );

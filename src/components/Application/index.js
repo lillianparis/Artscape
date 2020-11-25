@@ -20,7 +20,7 @@ function Application() {
     <>
     <Navbar />
     <Router>
-      <Home path="/home" />
+      <Home path="/" />
     <Studio path="/studio" />
     <Feed path="/feed" /> 
     <Inbox path="/Inbox" />

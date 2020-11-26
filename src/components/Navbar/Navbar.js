@@ -70,7 +70,7 @@ const Navbar = ({ handleLogout }) => {
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">
+                  <a class="nav-link" href="/artist">
                     <span data-feather="bar-chart-2"></span>
                     Saved Artists
                   </a>
@@ -79,13 +79,13 @@ const Navbar = ({ handleLogout }) => {
 
               <ul class="nav flex-column mb-2">
                 <li class="nav-item">
-                  <a class="nav-link" href="#">
+                  <a class="nav-link" href="/cart">
                     <span data-feather="file-text"></span>
                     Shopping Cart
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">
+                  <a class="nav-link" href="/orders">
                     <span data-feather="file-text"></span>
                     Orders
                   </a>

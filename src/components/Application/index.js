@@ -13,6 +13,8 @@ import Feed from "../../Pages/Feed";
 import Inbox from "../../Pages/Inbox";
 import Cart from "../../Pages/Cart";
 import Home from "../../Pages/Home";
+import Artist from "../../Pages/Artist";
+import Orders from "../../Pages/Orders";
 
 function Application() {
   const user = useContext(UserContext);
@@ -23,8 +25,10 @@ function Application() {
       <Home path="/" />
     <Studio path="/studio" />
     <Feed path="/feed" /> 
-    <Inbox path="/Inbox" />
+    <Inbox path="/inbox" />
     <Cart path="/cart" />
+    <Artist path="/artist" />
+    <Orders path="/orders" />
     </Router>
     </>
     : 

@@ -1,35 +1,33 @@
-.jumbotron{
-    background-image: url(https://images.unsplash.com/photo-1565452171067-f2b1384f958d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80);
-    background-position: center;
+.carousel {
+    margin-bottom: 4rem;
+  }
 
-}
+  .carousel-caption {
+    bottom: 3rem;
+    z-index: 10;
+  }
 
-.jumbotron2{
-    background-color: grey;
-    background-position: center;
-    padding-top: 75px;
-    padding-bottom: 80px;
+  .carousel-item {
+    height: 32rem;
+  }
 
-}
+  .carousel-item > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 32rem;
+  }
 
-.jumbotron3{
-    background-color: grey;
-    background-position: center;
-    padding-top: 75px;
-    padding-bottom: 80px;
+  @media (min-width: 40em) {
     
+    .carousel-caption p {
+      margin-bottom: 1.25rem;
+      font-size: 1.25rem;
+      line-height: 1.4;
+    }
+  
+    
+  }
 
-}
 
-.ad2{
-    justify-content: right;
-    color: #2e0089;
-}
-
-.lead{
-    color: #2e0089;
-}
-
-.lead2{
-    color: #2e0089;
-}

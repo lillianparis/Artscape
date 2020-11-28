@@ -11,17 +11,8 @@ function carousel() {
       </ol>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <svg
-            class="bd-placeholder-img"
-            width="100%"
-            height="100%"
-            xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="xMidYMid slice"
-            focusable="false"
-            role="img"
-          >
-            <rect width="100%" height="100%" fill="#345" />
-          </svg>
+          <img src="https://images.unsplash.com/photo-1492037766660-2a56f9eb3fcb?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTl8fGFydHxlbnwwfHwwfA%3D%3D&auto=format&fit=crop&w=500&q=60"/>
+            
           <div class="container">
             <div class="carousel-caption text-left">
               <h1>Welcome to Artscape</h1>
@@ -32,17 +23,7 @@ function carousel() {
           </div>
         </div>
         <div class="carousel-item">
-          <svg
-            class="bd-placeholder-img"
-            width="100%"
-            height="100%"
-            xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="xMidYMid slice"
-            focusable="false"
-            role="img"
-          >
-            <rect width="100%" height="100%" fill="#345" />
-          </svg>
+          <img src="https://images.unsplash.com/photo-1520207588543-1e545b20c19e?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTl8fHBhaW50ZXJ8ZW58MHx8MHw%3D&auto=format&fit=crop&w=500&q=60"/>
           <div class="container">
             <div class="carousel-caption">
               <h1>Are you an Artist?</h1>
@@ -54,17 +35,7 @@ function carousel() {
           </div>
         </div>
         <div class="carousel-item">
-          <svg
-            class="bd-placeholder-img"
-            width="100%"
-            height="100%"
-            xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="xMidYMid slice"
-            focusable="false"
-            role="img"
-          >
-            <rect width="100%" height="100%" fill="#345" />
-          </svg>
+          <img src="https://images.unsplash.com/photo-1545518514-ce8448f542b3?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjN8fGFydCUyMHNob3d8ZW58MHx8MHw%3D&auto=format&fit=crop&w=500&q=60"/>
           <div class="container">
             <div class="carousel-caption text-right">
               <h1>Love Art?</h1>

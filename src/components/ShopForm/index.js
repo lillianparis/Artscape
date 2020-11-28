@@ -1,33 +1,35 @@
 import React from "react";
 
 function shopform() {
-    'use strict'
-    window.addEventListener('load', function () {
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.getElementsByClassName('needs-validation')
-    
-        // Loop over them and prevent submission
-        Array.prototype.filter.call(forms, function (form) {
-          form.addEventListener('submit', function (event) {
+  "use strict";
+  window.addEventListener(
+    "load",
+    function () {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName("needs-validation");
+
+      // Loop over them and prevent submission
+      Array.prototype.filter.call(forms, function (form) {
+        form.addEventListener(
+          "submit",
+          function (event) {
             if (form.checkValidity() === false) {
-              event.preventDefault()
-              event.stopPropagation()
+              event.preventDefault();
+              event.stopPropagation();
             }
-    
-            form.classList.add('was-validated')
-          }, false)
-        })
-      }, false)
+
+            form.classList.add("was-validated");
+          },
+          false
+        );
+      });
+    },
+    false
+  );
   return (
     <div class="container">
       <div class="py-5 text-center">
-        
         <h2>Checkout form</h2>
-        <p class="lead">
-          Below is an example form built entirely with Bootstrap’s form
-          controls. Each required form group has a validation state that can be
-          triggered by attempting to submit the form without completing it.
-        </p>
       </div>
 
       <div class="row">
@@ -79,7 +81,7 @@ function shopform() {
                 placeholder="Promo code"
               />
               <div class="input-group-append">
-                <button type="submit" class="btn btn-secondary">
+                <button type="submit" class="btn btn-danger">
                   Redeem
                 </button>
               </div>
@@ -131,9 +133,7 @@ function shopform() {
                   placeholder="Username"
                   required
                 />
-                <div class="invalid-feedback">
-                  Your username is required.
-                </div>
+                <div class="invalid-feedback">Your username is required.</div>
               </div>
             </div>
 
@@ -331,7 +331,7 @@ function shopform() {
               </div>
             </div>
             <hr class="mb-4" />
-            <button class="btn btn-primary btn-lg btn-block" type="submit">
+            <button class="btn btn-success btn-lg btn-block" type="submit">
               Continue to checkout
             </button>
           </form>

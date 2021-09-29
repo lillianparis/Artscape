@@ -29,7 +29,7 @@ function shopform() {
   return (
     <div class="container">
       <div class="py-5 text-center">
-        <h2>Checkout form</h2>
+        <h2>Shopping cart</h2>
       </div>
 
       <div class="row">

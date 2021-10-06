@@ -1,39 +1,58 @@
-import React, { useContext, useState } from "react";
-import { Link } from "@reach/router";
-import { auth, signInWithGoogle, generateUserDocument } from "../../fire";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { signUpUserStart, googleSignInStart } from './../../redux/User/user.actions';
+
+import "./styles.css"
+
+const mapState = ({ user }) => ({
+  currentUser: user.currentUser
+});
 
 const Signup = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [displayName, setDisplayName] = useState("");
-  const [error, setError] = useState(null);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { currentUser, userErr } = useSelector(mapState);
+  const [displayName, setDisplayName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [setConfirmPassword] = useState('');
+  const [error, setErrors] = useState([]);
 
-  const createUserWithEmailAndPasswordHandler = async (event, email, password) => {
+  useEffect(() => {
+    if (currentUser) {
+      reset();
+      history.push('/');
+    }
+
+  }, [currentUser]);
+
+  useEffect(() => {
+    if (Array.isArray(userErr) && userErr.length > 0) {
+      setErrors(userErr);
+    }
+
+  }, [userErr]);
+
+  const reset = () => {
+    setDisplayName('');
+    setEmail('');
+    setPassword('');
+    setErrors([]);
+  };
+
+  const handleFormSubmit = event => {
     event.preventDefault();
-    try{
-      const {user} = await auth.createUserWithEmailAndPassword(email, password);
-      generateUserDocument(user, {displayName});
-    }
-    catch(error){
-      setError('Error Signing up with email and password');
-    }
-      
-    setEmail("");
-    setPassword("");
-    setDisplayName("");
-  };
+    dispatch(signUpUserStart({
+      displayName,
+      email,
+      password
+    }));
+  }
 
-  const onChangeHandler = event => {
-    const { name, value } = event.currentTarget;
-
-    if (name === "userEmail") {
-      setEmail(value);
-    } else if (name === "userPassword") {
-      setPassword(value);
-    } else if (name === "displayName") {
-      setDisplayName(value);
-    }
-  };
+  const handleGoogleSignIn = () => {
+    dispatch(googleSignInStart());
+  }
 
   return (
     <section className="login">
@@ -43,7 +62,7 @@ const Signup = () => {
             {error}
           </div>
         )}
-        <div className="loginContainer">
+        <div className="loginContainer" onSubmit={handleFormSubmit}>
         <h1 className="signin">Sign Up</h1>
           <label htmlFor="displayName" className="block">
             Display Name:
@@ -54,7 +73,7 @@ const Signup = () => {
             value={displayName}
             placeholder="E.g: Faruq"
             id="displayName"
-            onChange={event => onChangeHandler(event)}
+            handleChange={e => setDisplayName(e.target.value)}
           />
           <label htmlFor="userEmail" className="block">
             Email:
@@ -66,7 +85,7 @@ const Signup = () => {
             value={email}
             placeholder="E.g: faruq123@gmail.com"
             id="userEmail"
-            onChange={event => onChangeHandler(event)}
+            handleChange={e => setEmail(e.target.value)}
           />
           <label htmlFor="userPassword" className="block">
             Password:
@@ -78,32 +97,24 @@ const Signup = () => {
             value={password}
             placeholder="Your Password"
             id="userPassword"
-            onChange={event => onChangeHandler(event)}
+            handleChange={e => setPassword(e.target.value)}
           />
-          <button
+          <button type="submit"
             className="bg-green-400 hover:bg-green-500 w-full py-2 text-white"
-            onClick={event => {
-              createUserWithEmailAndPasswordHandler(event, email, password);
-            }}
-          >
+            >
+          
             Sign up
           </button>
         <p className="or">or</p>
         <button
-          onClick={() => {
-            try {
-              signInWithGoogle();
-            } catch (error) {
-              console.error("Error signing in with Google", error);
-            }
-          }}
+          onClick={handleGoogleSignIn}
           className="googlebutton"
         >
           Sign In with Google
         </button>
         <p className="or">
           Already have an account?{" "}
-          <Link to="/" className="text-blue-500 hover:text-blue-600">
+          <Link to="/signup" className="text-blue-500 hover:text-blue-600">
             Sign in here
           </Link>{" "}
         </p>

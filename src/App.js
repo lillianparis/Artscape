@@ -34,9 +34,9 @@ const App = (props) => {
         <Route path="/passwordReset" render={() => <PasswordReset />} />
         <Route path="/signup" render={() => <SignUp/>} />
         <Route exact path="/" render={() => (
-        <WithAuth>
+        
           <Home/>
-          </WithAuth>)} />
+          )} />
         <Route path="/studio" render={() => <Studio />} />
         <Route path="/feed" render={() => <Feed></Feed>} />
         <Route path="/inbox" render={() => <Inbox />} />

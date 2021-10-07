@@ -103,7 +103,7 @@ const mapState = ({ user }) => ({
   LogIn
 </Link>
 {` | `}
-<Link to="/recovery">
+<Link to="/passwordReset">
   Reset Password
   </Link>
 </div>

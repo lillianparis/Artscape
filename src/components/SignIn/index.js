@@ -1,91 +1,98 @@
-import React, {useState} from "react";
-import { Link } from "@reach/router";
-import { signInWithGoogle } from "../../fire";
-import { auth } from "../../fire";
-import "./style.css"
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { emailSignInStart, googleSignInStart } from './../../redux/User/user.actions';
 
-const SignIn = () => {
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState(null);
 
-    const signInWithEmailAndPasswordHandler = (event,email, password) => {
-        event.preventDefault();
-        auth.signInWithEmailAndPassword(email, password).catch(error => {
-        setError("Error signing in with password and email!");
-          console.error("Error signing in with password and email", error);
-        });
-      };
-      
-      const onChangeHandler = (event) => {
-          const {name, value} = event.currentTarget;
-        
-          if(name === 'userEmail') {
-              setEmail(value);
-          }
-          else if(name === 'userPassword'){
-            setPassword(value);
-          }
-      };
-   
+import AuthWrapper from './../AuthWrapper';
+import FormInput from './../forms/FormInput';
+import Button from './../forms/Button';
+
+const mapState = ({ user }) => ({
+  currentUser: user.currentUser
+});
+
+const SignIn = props => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { currentUser } = useSelector(mapState);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('')
+
+  useEffect(() => {
+    if (currentUser) {
+      resetForm();
+      history.push('/');
+    }
+
+  }, [currentUser]);
+
+  const resetForm = () => {
+    setEmail('');
+    setPassword('');
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    dispatch(emailSignInStart({ email, password }));
+  }
+
+  const handleGoogleSignIn = () => {
+    dispatch(googleSignInStart());
+  }
+
+  const configAuthWrapper = {
+    headline: 'LogIn'
+  };
 
   return (
-  
-    <section className="login">
-      { <div className="border border-blue-400 mx-auto w-11/12 md:w-2/4 rounded py-8 px-4 md:px-8">
-        {error !== null && <div className = "py-4 bg-red-600 w-full text-white text-center mb-3">{error}</div>} 
-        <div className="loginContainer">
-      <h1 className="signin">Sign In</h1>
-          <label htmlFor="userEmail" className="block">
-            Email:
-          </label>
-          <input
+    <AuthWrapper {...configAuthWrapper}>
+      <div className="loginContainer">
+        <form onSubmit={handleSubmit}>
+
+          <FormInput
             type="email"
-            name="userEmail"
-            value = {email}
-            placeholder="E.g: faruq123@gmail.com"
-            id="userEmail"
-            onChange = {(event) => onChangeHandler(event)}
+            name="email"
+            value={email}
+            placeholder="Email"
+            handleChange={e => setEmail(e.target.value)}
           />
-          <label htmlFor="userPassword" className="block">
-            Password:
-          </label>
-          <input
+
+          <FormInput
             type="password"
-            name="userPassword"
-            value = {password}
-            placeholder="Your Password"
-            id="userPassword"
-            onChange = {(event) => onChangeHandler(event)}
+            name="password"
+            value={password}
+            placeholder="Password"
+            handleChange={e => setPassword(e.target.value)}
           />
-          <button  onClick = {(event) => {signInWithEmailAndPasswordHandler(event, email, password)}}>
-            Sign in
-          </button>
-        <p className="or">or</p>
-        <button className="googlebutton"
-          onClick={() => {
-            signInWithGoogle();
-          }}
-        >
-          Sign in with Google
-        </button>
-        <p className="or">
-          Don't have an account?{" "}
-          <Link to="signup">
-            Sign up here
-          </Link>{" "}
-          <br />{" "}
-          <Link to="passwordReset" >
-            Forgot Password?
-          </Link>
-        </p>
+
+          <Button type="submit">
+            LogIn
+          </Button>
+
+          <div className="socialSignin">
+            <div className="row">
+              <Button className="googlebutton" onClick={handleGoogleSignIn}>
+                Sign in with Google
+              </Button>
+            </div>
+          </div>
+
+          <div className="links">
+            <Link to="/registration">
+              Register
+            </Link>
+            {` | `}
+            <Link to="/recovery">
+              Reset Password
+            </Link>
+          </div>
+
+        </form>
       </div>
-        </div>
-   }
-    </section>
-   )
-  
-};
+    </AuthWrapper>
+  );
+}
 
 export default SignIn;

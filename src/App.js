@@ -1,19 +1,53 @@
-import React, { useContext } from "react";
-import { Router } from "react-router-dom";
-import SignIn from "./components/SignIn/index";
-import Signup from "./components/Signup/index";
-import Application from "./components/Application/index";
-import UserProvider from "./Providers/UserProvider";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Route, Switch } from "react-router-dom";
+import { checkUserSession } from "./redux/User/user.actions";
 
 
+//Components
+import PasswordReset from "./components/PasswordReset";
 
-function App() {
-  
+
+//Pages
+import Studio from "./Pages/Studio";
+import Feed from "./Pages/Feed";
+import Inbox from "./Pages/Inbox";
+import Cart from "./Pages/Cart";
+import Home from "./Pages/Home";
+import Orders from "./Pages/Orders";
+import Login from "./Pages/Login";
+import SignUp from "./Pages/SignUp";
+
+import WithAuth from "./hoc/withAuth";
+import WithAdminAuth from './hoc/withAdminAuth';
+
+const App = (props) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkUserSession());
+  }, []);
   return (
-    <UserProvider>
-      <Application />
-    </UserProvider>
+    <>
+      <Switch>
+        <Route path="/signin" render={() => <Login />} />
+        <Route path="/passwordReset" render={() => <PasswordReset />} />
+        <Route path="/signup" render={() => <SignUp/>} />
+        <Route exact path="/" render={() => (
+        <WithAuth>
+          <Home/>
+          </WithAuth>)} />
+        <Route path="/studio" render={() => <Studio />} />
+        <Route path="/feed" render={() => <Feed></Feed>} />
+        <Route path="/inbox" render={() => <Inbox />} />
+        <Route path="/cart" render={() => <Cart />} />
+        <Route path="/orders" render={() => <Orders />} />
+        
+        
+        
+      </Switch>
+    </>
   );
-}
+};
 
 export default App;

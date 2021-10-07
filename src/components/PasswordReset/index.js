@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
-import { auth } from "../../fire";
-import { UserContext } from "../../Providers/UserProvider";
+import { auth } from "../../Firebase/Utils";
+
 import { Link } from "@reach/router";
 
 const PasswordReset = () => {

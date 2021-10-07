@@ -1,9 +1,29 @@
-import React from "react";
-import { auth } from "../../fire";
-import UserInfo from "../UserInfo/index";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { signOutUserStart } from "./../../redux/User/user.actions";
+import { selectCartItemsCount } from "./../../redux/Cart/cart.selectors";
 import "./style.css";
 
-const Navbar = ({ handleLogout }) => {
+const mapState = (state) => ({
+  currentUser: state.user.currentUser,
+  totalNumCartItems: selectCartItemsCount(state),
+});
+
+const Navbar = (props) => {
+  const location = useLocation();
+  const [activeMenu, setActiveMenu] = useState(false);
+  const dispatch = useDispatch();
+  const { currentUser, totalNumCartItems } = useSelector(mapState);
+
+  const signOut = () => {
+    dispatch(signOutUserStart());
+  };
+
+  useEffect(() => {
+    setActiveMenu(false);
+  }, [location]);
+
   return (
     <>
       <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
@@ -22,82 +42,45 @@ const Navbar = ({ handleLogout }) => {
           <span class="navbar-toggler-icon"></span>
         </button>
         <input
-          class="form-control form-control-dark w-100"
+          class="form-control form-control-dark w-70"
           type="text"
           placeholder="Search for an Artist"
           aria-label="Search"
         ></input>
-        <ul class="navbar-nav px-3">
-          <li class="nav-item text-nowrap">
-            <a
-              class="nav-link"
-              href="#"
-              onClick={() => {
-                auth.signOut();
-              }}
-            >
-              Sign out
-            </a>
-          </li>
-        </ul>
+
+        {currentUser && (
+          <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+              <a class="nav-link" to="/signin" onClick={() => signOut()}>
+                Sign out
+              </a>
+            </li>
+            <li class="nav-item text-nowrap">
+              <Link to="/cart">
+                Your Cart ({totalNumCartItems})
+                <i class="fas fa-shopping-basket"></i>
+              </Link>
+            </li>
+          </ul>
+        )}
+
+        {!currentUser && [
+          <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+              <Link to="/signin">
+                Login
+                <i class="fas fa-user-circle"></i>
+              </Link>
+            </li>
+          </ul>,
+        ]}
       </nav>
-
-      <div class="container-fluid">
-        <div class="row">
-          <nav
-            id="sidebarMenu"
-            class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
-          >
-            <div class="sidebar-sticky pt-3">
-              <ul class="nav flex-column">
-                
-                <li class="nav-item">
-                  <a class="nav-link" href="/feed">
-                    <span data-feather="feed"></span>
-                    Feed
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/studio">
-                    <span data-feather="studio"></span>
-                    Studio
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/inbox">
-                    <span data-feather="users"></span>
-                    Messages
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/artist">
-                    <span data-feather="bar-chart-2"></span>
-                    Saved Artists
-                  </a>
-                </li>
-              </ul>
-
-              <ul class="nav flex-column mb-2">
-                <li class="nav-item">
-                  <a class="nav-link" href="/cart">
-                    <span data-feather="file-text"></span>
-                    Shopping Cart
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/orders">
-                    <span data-feather="file-text"></span>
-                    Orders
-                  </a>
-                </li>
-              </ul>
-              <UserInfo />
-            </div>
-          </nav>
-        </div>
-      </div>
     </>
   );
+};
+
+Navbar.defaultProps = {
+  currentUser: null,
 };
 
 export default Navbar;

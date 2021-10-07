@@ -1,116 +1,115 @@
-import React, { useContext, useState } from "react";
-import { Link } from "@reach/router";
-import { auth, signInWithGoogle, generateUserDocument } from "../../fire";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, Link } from 'react-router-dom';
+import { signUpUserStart } from './../../redux/User/user.actions';
+import AuthWrapper from './../AuthWrapper';
+import FormInput from './../forms/FormInput';
+import Button from './../forms/Button';
 
-const Signup = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [displayName, setDisplayName] = useState("");
-  const [error, setError] = useState(null);
+const mapState = ({ user }) => ({
+    currentUser: user.currentUser,
+    userErr: user.userErr
+  });
 
-  const createUserWithEmailAndPasswordHandler = async (event, email, password) => {
-    event.preventDefault();
-    try{
-      const {user} = await auth.createUserWithEmailAndPassword(email, password);
-      generateUserDocument(user, {displayName});
-    }
-    catch(error){
-      setError('Error Signing up with email and password');
-    }
-      
-    setEmail("");
-    setPassword("");
-    setDisplayName("");
-  };
+  const Signup = props => {
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const { currentUser, userErr } = useSelector(mapState);
+    const [displayName, setDisplayName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [errors, setErrors] = useState([]);
+  
+    useEffect(() => {
+        if (currentUser) {
+          reset();
+          history.push('/');
+        }
+    
+      }, [currentUser]);
+    
+      useEffect(() => {
+        if (Array.isArray(userErr) && userErr.length > 0) {
+          setErrors(userErr);
+        }
+    
+      }, [userErr]);
+    
+      const reset = () => {
+        setDisplayName('');
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
+        setErrors([]);
+      };
+    
+      const handleFormSubmit = event => {
+        event.preventDefault();
+        dispatch(signUpUserStart({
+          displayName,
+          email,
+          password,
+          confirmPassword
+        }));
+      }
+      const configAuthWrapper = {
+        headline: 'Registration'
+      };
 
-  const onChangeHandler = event => {
-    const { name, value } = event.currentTarget;
+      return (
+        <AuthWrapper {...configAuthWrapper}>
+<form onSubmit={handleFormSubmit}>
 
-    if (name === "userEmail") {
-      setEmail(value);
-    } else if (name === "userPassword") {
-      setPassword(value);
-    } else if (name === "displayName") {
-      setDisplayName(value);
-    }
-  };
+<FormInput
+  type="text"
+  name="displayName"
+  value={displayName}
+  placeholder="Full name"
+  handleChange={e => setDisplayName(e.target.value)}
+/>
 
-  return (
-    <section className="login">
-      <div className="border border-blue-400 mx-auto w-11/12 md:w-2/4 rounded py-8 px-4 md:px-8">
-        {error !== null && (
-          <div className="py-4 bg-red-600 w-full text-white text-center mb-3">
-            {error}
-          </div>
-        )}
-        <div className="loginContainer">
-        <h1 className="signin">Sign Up</h1>
-          <label htmlFor="displayName" className="block">
-            Display Name:
-          </label>
-          <input
-            type="text"
-            name="displayName"
-            value={displayName}
-            placeholder="E.g: Faruq"
-            id="displayName"
-            onChange={event => onChangeHandler(event)}
-          />
-          <label htmlFor="userEmail" className="block">
-            Email:
-          </label>
-          <input
-            type="email"
-            className="my-1 p-1 w-full"
-            name="userEmail"
-            value={email}
-            placeholder="E.g: faruq123@gmail.com"
-            id="userEmail"
-            onChange={event => onChangeHandler(event)}
-          />
-          <label htmlFor="userPassword" className="block">
-            Password:
-          </label>
-          <input
-            type="password"
-            className="mt-1 mb-3 p-1 w-full"
-            name="userPassword"
-            value={password}
-            placeholder="Your Password"
-            id="userPassword"
-            onChange={event => onChangeHandler(event)}
-          />
-          <button
-            className="bg-green-400 hover:bg-green-500 w-full py-2 text-white"
-            onClick={event => {
-              createUserWithEmailAndPasswordHandler(event, email, password);
-            }}
-          >
-            Sign up
-          </button>
-        <p className="or">or</p>
-        <button
-          onClick={() => {
-            try {
-              signInWithGoogle();
-            } catch (error) {
-              console.error("Error signing in with Google", error);
-            }
-          }}
-          className="googlebutton"
-        >
-          Sign In with Google
-        </button>
-        <p className="or">
-          Already have an account?{" "}
-          <Link to="/" className="text-blue-500 hover:text-blue-600">
-            Sign in here
-          </Link>{" "}
-        </p>
-        </div>
-      </div>
-    </section>
-  );
-};
+<FormInput
+  type="email"
+  name="email"
+  value={email}
+  placeholder="Email"
+  handleChange={e => setEmail(e.target.value)}
+/>
 
-export default Signup;
+<FormInput
+  type="password"
+  name="password"
+  value={password}
+  placeholder="Password"
+  handleChange={e => setPassword(e.target.value)}
+/>
+
+<FormInput
+  type="password"
+  name="confirmPassword"
+  value={confirmPassword}
+  placeholder="Confirm Password"
+  handleChange={e => setConfirmPassword(e.target.value)}
+/>
+
+<Button type="submit">
+  Register
+</Button>
+</form>
+
+<div className="links">
+<Link to="/login">
+  LogIn
+</Link>
+{` | `}
+<Link to="/recovery">
+  Reset Password
+  </Link>
+</div>
+
+    </AuthWrapper>
+      );
+  }
+
+  export default Signup

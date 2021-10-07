@@ -1,5 +1,5 @@
 import React from "react";
-import UserInfo from "../UserInfo/index";
+
 
 function sidebar(){
     return(
@@ -52,7 +52,7 @@ function sidebar(){
                   </a>
                 </li>
               </ul>
-              <UserInfo />
+              
             </div>
           </nav>
         </div>

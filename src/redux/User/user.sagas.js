@@ -1,8 +1,9 @@
 import { takeLatest, call, all, put } from 'redux-saga/effects';
-import { auth, handleUserProfile, getCurrentUser, GoogleProvider } from './../../Firebase/Utils';
+import { auth, handleUserProfile, getCurrentUser, googleProvider } from './../../Firebase/Utils';
 import userTypes from './user.types';
 import { signInSuccess, signOutUserSuccess, resetPasswordSuccess, userError } from './user.actions';
 import { handleResetPasswordAPI } from './user.helpers';
+
 
 export function* getSnapshotFromUserAuth(user, additionalData = {}) {
   try {
@@ -115,7 +116,7 @@ export function* onResetPasswordStart() {
 
 export function* googleSignIn() {
   try {
-    const { user } = yield auth.signInWithPopup(GoogleProvider);
+    const { user } = yield auth.signInWithPopup(googleProvider);
     yield getSnapshotFromUserAuth(user);
 
   } catch (err) {

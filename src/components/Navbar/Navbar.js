@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation  } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { signOutUserStart } from './../../redux/User/user.actions';
-import { selectCartItemsCount } from './../../redux/Cart/cart.selectors';
-
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { signOutUserStart } from "./../../redux/User/user.actions";
+import { selectCartItemsCount } from "./../../redux/Cart/cart.selectors";
 import "./style.css";
 
 const mapState = (state) => ({
   currentUser: state.user.currentUser,
-  totalNumCartItems: selectCartItemsCount(state)
+  totalNumCartItems: selectCartItemsCount(state),
 });
 
-const Navbar = () => {
+const Navbar = (props) => {
   const location = useLocation();
   const [activeMenu, setActiveMenu] = useState(false);
   const dispatch = useDispatch();
@@ -43,41 +42,45 @@ const Navbar = () => {
           <span class="navbar-toggler-icon"></span>
         </button>
         <input
-          class="form-control form-control-dark w-100"
+          class="form-control form-control-dark w-70"
           type="text"
           placeholder="Search for an Artist"
           aria-label="Search"
         ></input>
-        <ul class="navbar-nav px-3">
-          <li class="nav-item text-nowrap">
-            <a
-              class="nav-link"
-              href="/signup"
-              onClick={() => 
-                signOut()}
-              
-            >
-              Sign out
-            </a>
-            {!currentUser && [
-              <li key={1}>
-                <Link to="/signup">
-                  Login
-                  <i class="fas fa-user-circle"></i>
-                </Link>
-              </li>
-            ]}
-          </li>
-          <Link to="/cart">
+
+        {currentUser && (
+          <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+              <a class="nav-link" to="/signin" onClick={() => signOut()}>
+                Sign out
+              </a>
+            </li>
+            <li class="nav-item text-nowrap">
+              <Link to="/cart">
                 Your Cart ({totalNumCartItems})
                 <i class="fas fa-shopping-basket"></i>
               </Link>
-        </ul>
-      </nav>
+            </li>
+          </ul>
+        )}
 
-      
+        {!currentUser && [
+          <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+              <Link to="/signin">
+                Login
+                <i class="fas fa-user-circle"></i>
+              </Link>
+            </li>
+          </ul>,
+        ]}
+      </nav>
     </>
   );
+};
+
+Navbar.defaultProps = {
+  currentUser: null,
 };
 
 export default Navbar;

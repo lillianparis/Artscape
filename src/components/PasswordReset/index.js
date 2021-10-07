@@ -1,81 +1,94 @@
-import React, { useState, useContext } from "react";
-import { auth } from "../../Firebase/Utils";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, Link } from 'react-router-dom';
+import { resetPasswordStart, resetUserState } from './../../redux/User/user.actions';
 
-import { Link } from "@reach/router";
 
-const PasswordReset = () => {
-  const [email, setEmail] = useState("");
-  const [emailHasBeenSent, setEmailHasBeenSent] = useState(false);
-  const [error, setError] = useState(null);
+import AuthWrapper from './../AuthWrapper';
+import FormInput from './../forms/FormInput';
+import Button from './../forms/Button';
 
-  const onChangeHandler = event => {
-    const { name, value } = event.currentTarget;
+const mapState = ({ user }) => ({
+  resetPasswordSuccess: user.resetPasswordSuccess,
+  userErr: user.userErr
+});
 
-    if (name === "userEmail") {
-      setEmail(value);
+const EmailPassword = props => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { resetPasswordSuccess, userErr } = useSelector(mapState);
+  const [email, setEmail] = useState('');
+  const [errors, setErrors] = useState([]);
+
+  useEffect(() => {
+    if (resetPasswordSuccess) {
+      dispatch(resetUserState());
+      history.push('/signin');
     }
+
+  }, [resetPasswordSuccess]);
+
+  useEffect(() => {
+    if (Array.isArray(userErr) && userErr.length > 0) {
+      setErrors(userErr);
+    }
+
+  }, [userErr]);
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    dispatch(resetPasswordStart({ email }));
+  }
+
+  const configAuthWrapper = {
+    headline: 'Email Password'
   };
 
-  const sendResetEmail = event => {
-    event.preventDefault();
-    auth
-      .sendPasswordResetEmail(email)
-      .then(() => {
-          setEmailHasBeenSent(true);
-        setTimeout(() => {setEmailHasBeenSent(false)}, 3000);
-      })
-      .catch(() => {
-        setError("Error resetting password");
-      });
-  };
   return (
-    <div className="mt-8">
-      <h1 className="text-xl text-center font-bold mb-3">
-        Reset your Password
-      </h1>
-      <div className="border border-blue-300 mx-auto w-11/12 md:w-2/4 rounded py-8 px-4 md:px-8">
-        <form action="">
-          {emailHasBeenSent && (
-            <div className="py-3 bg-green-400 w-full text-white text-center mb-3">
-              An email has been sent to you!
-            </div>
-          )}
-          {error !== null && (
-            <div className="py-3 bg-red-600 w-full text-white text-center mb-3">
-              {error}
-            </div>
-          )}
-          <label htmlFor="userEmail" className="w-full block">
-            Email:
-          </label>
-          <input
+    <AuthWrapper {...configAuthWrapper}>
+      <div className="formWrap">
+
+        {errors.length > 0 && (
+          <ul>
+            {errors.map((e, index) => {
+              return (
+                <li key={index}>
+                  {e}
+                </li>
+              );
+            })}
+          </ul>
+        )}
+
+        <form onSubmit={handleSubmit}>
+
+          <FormInput
             type="email"
-            name="userEmail"
-            id="userEmail"
+            name="email"
             value={email}
-            placeholder="Input your email"
-            onChange={onChangeHandler}
-            className="mb-3 w-full px-1 py-2"
+            placeholder="Email"
+            handleChange={e => setEmail(e.target.value)}
           />
-          <button
-            className="w-full bg-blue-400 text-white py-3"
-            onClick={event => {
-              sendResetEmail(event);
-            }}
-          >
-            Send me a reset link
-          </button>
+
+          <Button type="submit">
+            Email Password
+          </Button>
+
         </form>
 
-        <Link
-          to="/"
-          className="my-2 text-blue-700 hover:text-blue-800 text-center block"
-        >
-          &larr; back to sign in page
-        </Link>
-      </div>
-    </div>
-  );
-};
+        <div className="links">
+          <Link to="/signin">
+            LogIn
+          </Link>
+          {` | `}
+          <Link to="/signup">
+            Register
+          </Link>
+        </div>
 
-export default PasswordReset;
+      </div>
+    </AuthWrapper>
+  );
+}
+
+export default EmailPassword;

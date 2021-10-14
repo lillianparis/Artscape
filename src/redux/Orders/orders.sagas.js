@@ -2,8 +2,8 @@ import ordersTypes from './orders.types';
 import { takeLatest, put, all, call } from 'redux-saga/effects';
 import { handleSaveOrder, handleGetUserOrderHistory,
   handleGetOrder } from './orders.helpers';
-import { auth } from './../../Firebase/Utils';
-import { clearCart } from './../Cart/cart.actions';
+import { auth } from '../../Firebase/Utils';
+import { clearCart } from '../Cart/cart.actions';
 import { setUserOrderHistory, setOrderDetails } from './orders.actions';
 
 export function* getUserOrderHistory({ payload }) {

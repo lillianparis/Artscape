@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import { checkUserSession } from "./redux/User/user.actions";
+import { checkUserSession } from "./Redux/User/user.actions";
 
 
 //Components

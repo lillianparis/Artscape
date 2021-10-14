@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { signOutUserStart } from "./../../redux/User/user.actions";
-import { selectCartItemsCount } from "./../../redux/Cart/cart.selectors";
+import { signOutUserStart } from "../../Redux/User/user.actions";
+import { selectCartItemsCount } from "../../Redux/Cart/cart.selectors";
 import "./style.css";
 
 const mapState = (state) => ({

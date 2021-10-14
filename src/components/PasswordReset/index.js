@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
-import { resetPasswordStart, resetUserState } from './../../redux/User/user.actions';
+import { resetPasswordStart, resetUserState } from '../../Redux/User/user.actions';
 
 
 import AuthWrapper from './../AuthWrapper';

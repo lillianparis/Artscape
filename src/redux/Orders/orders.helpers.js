@@ -1,4 +1,4 @@
-import { firestore } from './../../Firebase/Utils';
+import { firestore } from '../../Firebase/Utils';
 
 export const handleSaveOrder = order => {
   return new Promise((resolve, reject) => {

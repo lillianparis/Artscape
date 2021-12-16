@@ -3,6 +3,7 @@ import "./style.css";
 
 function marketing() {
   return (
+    
     <div class="container marketing">
       <div class="row">
         <div class="col-lg-6">

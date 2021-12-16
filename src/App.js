@@ -17,9 +17,12 @@ import Home from "./Pages/Home";
 import Orders from "./Pages/Orders";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
+// import Page from "./Pages/1stPage/page"
 
 import WithAuth from "./hoc/withAuth";
 import WithAdminAuth from './hoc/withAdminAuth';
+
+// Page is currently being worked on - LP
 
 const App = (props) => {
   const dispatch = useDispatch();
@@ -30,6 +33,7 @@ const App = (props) => {
   return (
     <>
       <Switch>
+        {/* <Page /> */}
         <Route path="/signin" render={() => <Login />} />
         <Route path="/passwordReset" render={() => <PasswordReset />} />
         <Route path="/signup" render={() => <SignUp/>} />

@@ -8,6 +8,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 // import { ChakraProvider } from "@chakra-ui/react";
 import { StyledEngineProvider } from '@mui/material/styles';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 ReactDOM.render(
   <React.StrictMode>

@@ -17,6 +17,7 @@ import Home from "./Pages/Home";
 import Orders from "./Pages/Orders";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
+import 'bootstrap/dist/css/bootstrap.min.css';
 // import Page from "./Pages/1stPage/page"
 
 import WithAuth from "./hoc/withAuth";

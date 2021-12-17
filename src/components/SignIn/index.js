@@ -48,7 +48,7 @@ function SignIn() {
 
       </Form.Group>
 
-      <ParticlesBg type="polygon" bg={true} />
+      <ParticlesBg type="color" bg={true} />
     </Form>
 
 

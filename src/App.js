@@ -18,7 +18,7 @@ import Orders from "./Pages/Orders";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import Page from "./Pages/1stPage/page"
+import Page from "./Pages/1stPage/page"
 
 import WithAuth from "./hoc/withAuth";
 import WithAdminAuth from './hoc/withAdminAuth';
@@ -34,7 +34,8 @@ const App = (props) => {
   return (
     <>
       <Switch>
-        {/* <Page /> */}
+        <Page />
+        <Route path="/Home" render={() => <Home />} />
         <Route path="/signin" render={() => <Login />} />
         <Route path="/passwordReset" render={() => <PasswordReset />} />
         <Route path="/signup" render={() => <SignUp/>} />

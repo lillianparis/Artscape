@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
+.page {
+    margin-top: 300px;
+    font-family: 'Staatliches', cursive;
+    font-size: 55px;
+}
+
+.text {
+    width: 850px;
+}
